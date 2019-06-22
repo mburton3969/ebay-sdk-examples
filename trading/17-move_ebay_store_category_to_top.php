@@ -41,6 +41,9 @@ use \DTS\eBaySDK\Trading\Enums;
  */
 $service = new Services\TradingService([
     'credentials' => $config['sandbox']['credentials'],
+    'authorization' => $config['sandbox']['oauthUserToken'],
+    'requestLanguage'  => 'en-US',
+    'responseLanguage' => 'en-US',
     'siteId'      => Constants\SiteIds::US,
     'sandbox'     => true
 ]);
@@ -49,12 +52,6 @@ $service = new Services\TradingService([
  * Create the request object.
  */
 $request = new Types\SetStoreCategoriesRequestType();
-
-/**
- * An user token is required when using the Trading service.
- */
-$request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['authToken'];
 
 // You must replace the example category IDs with values that are valid for your store.
 $request->Action = 'Move';

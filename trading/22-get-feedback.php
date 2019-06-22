@@ -41,6 +41,9 @@ use \DTS\eBaySDK\Trading\Enums;
  */
 $service = new Services\TradingService([
     'credentials' => $config['production']['credentials'],
+    'authorization' => $config['sandbox']['oauthUserToken'],
+    'requestLanguage'  => 'en-US',
+    'responseLanguage' => 'en-US',
     'siteId'      => Constants\SiteIds::US
 ]);
 
@@ -48,14 +51,6 @@ $service = new Services\TradingService([
  * Create the request object.
  */
 $request = new Types\GetFeedbackRequestType();
-
-/**
- * An user token is required when using the Trading service.
- *
- * NOTE: eBay will use the token to determine which store to return.
- */
-$request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
  * By specifying 'Positive' we are telling the API return only positive reviews.

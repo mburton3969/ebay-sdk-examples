@@ -41,6 +41,9 @@ use \DTS\eBaySDK\Trading\Enums;
  */
 $service = new Services\TradingService([
     'credentials' => $config['sandbox']['credentials'],
+    'authorization' => $config['sandbox']['oauthUserToken'],
+    'requestLanguage'  => 'en-US',
+    'responseLanguage' => 'en-US',
     'sandbox'     => true,
     'siteId'      => Constants\SiteIds::US
 ]);
@@ -49,12 +52,6 @@ $service = new Services\TradingService([
  * Create the request object.
  */
 $request = new Types\UploadSiteHostedPicturesRequestType();
-
-/**
- * An user token is required when using the Trading service.
- */
-$request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['authToken'];
 
 /**
  * Give the picture a name.
